@@ -9,10 +9,21 @@
     <link href="./bootstrap/basic/css/bootstrap.min.css" rel="stylesheet">
     <link href="./bootstrap/basic/font-awesome/css/font-awesome.css" rel="stylesheet: ">
 </head>
+<template id="dropdown-template">
+    <div class="dropdown">
+        <div class="dropdown-title" @click="dropdownShow">
+            <label class="title-label">{{titleMessage}}</label>
+        </div>
+        <div class="dropdown-scroll-hider">
+            <div class="dropdown-container">
+            </div>
+        </div>
+    </div>
+</template>
 <body>
     <div id="app">
         <div @click="showTicketPopup">구매하기</div>
-        <div id="popup-date-ticket" class="popup" :class="classObject" @click="closeTest">
+        <div id="popup-date-ticket" class="popup" :class="classObject" @click.self="closeTicketPopup">
             <div id="dateticket-scroll-hider">
                 <div class="bar-button-left btn-ticket-close" @click="closeTicketPopup">
                     <img src="./images/front/ic_cancel_square_dark.svg" />
@@ -32,42 +43,10 @@
                         <input type="hidden" id="date-popup-item-id" name="item_id" value="" />
                         <div class="dateticket-list" style="display: none;"></div>
                         <div id="selector-container">
-                            <div id="ticket-month" class="dropdown">
-                                <div class="dropdown-title">
-                                    <label class="title-label">월을 선택하세요.</label>
-                                </div>
-                                <div class="dropdown-scroll-hider">
-                                    <div class="dropdown-container">
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="ticket-day" class="dropdown">
-                                <div class="disabled-dropdown">
-                                    <label class="title-label">날짜를 선택하세요.</label>
-                                </div>
-                                <div class="dropdown-scroll-hider">
-                                    <div class="dropdown-container">
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="ticket-time" class="dropdown">
-                                <div class="disabled-dropdown">
-                                    <label class="title-label">관람시간을 선택하세요.</label>
-                                </div>
-                                <div class="dropdown-scroll-hider">
-                                    <div class="dropdown-container">
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="ticket-name" class="dropdown">
-                                <div class="disabled-dropdown">
-                                    <label class="title-label">옵션을 선택하세요.</label>
-                                </div>
-                                <div class="dropdown-scroll-hider">
-                                    <div class="dropdown-container">
-                                    </div>
-                                </div>
-                            </div>
+                            <dropdown-template title-message="월을 입력하세요."></dropdown-template>
+                            <dropdown-template title-message="날짜를 선택하세요."></dropdown-template>
+                            <dropdown-template title-message="관람시간을 선택하세요."></dropdown-template>
+                            <dropdown-template title-message="옵션을 선택하세요."></dropdown-template>
                         </div>
                     </form>
                 </div>
@@ -78,6 +57,18 @@
         </div>
     </div>
     <script>
+        Vue.component('dropdown-template', {
+            template: '#dropdown-template',
+            data: function(){
+               return '';
+            },
+            props: ['titleMessage'],
+            methods: {
+                dropdownShow(){
+                    
+                }
+            }
+        })
         var app = new Vue({
             el: '#app',
             data: {
@@ -92,8 +83,8 @@
                 closeTicketPopup(){
                     this.classObject['show-ticket'] = false;
                 },
-                closeTest(e){
-                    e.target == e.currentTarget && e.currentTarget.style.display != "none" ? this.classObject['show-ticket'] = false : this.classObject['show-ticket'] = true;
+                dropdownShow(e){
+
                 }
             }
         })
