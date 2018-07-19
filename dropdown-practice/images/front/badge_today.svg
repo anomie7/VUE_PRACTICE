@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="10px" viewBox="0 0 32 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>badge_today</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="badge_today">
+            <rect id="Rectangle-3" fill="#000000" x="0" y="0" width="32" height="10"></rect>
+            <text id="TODAY" font-family="Comfortaa-Regular, Comfortaa" font-size="8" font-weight="normal" fill="#FFFFFF">
+                <tspan x="1.212" y="8">TODAY</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

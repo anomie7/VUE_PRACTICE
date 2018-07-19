@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_gallery</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="0 17 17 17 17 0 0 0"></polygon>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="ic_gallery">
+            <g id="Page-1" transform="translate(4.000000, 4.000000)">
+                <path d="M8.4897,13.8368 C8.1367,13.8518 7.8007,13.6398 7.6727,13.2908 C7.5127,12.8588 7.7347,12.3798 8.1677,12.2208 L12.7287,10.5518 C13.1627,10.3918 13.6397,10.6148 13.7997,11.0468 C13.9577,11.4788 13.7357,11.9588 13.3037,12.1168 L8.7417,13.7858 C8.6587,13.8168 8.5737,13.8338 8.4897,13.8368 Z" id="Fill-1" fill="#4CF1FD"></path>
+                <path d="M7.1703,4.493 C7.1703,5.402 6.4333,6.139 5.5243,6.139 C4.6153,6.139 3.8783,5.402 3.8783,4.493 C3.8783,3.584 4.6153,2.847 5.5243,2.847 C6.4333,2.847 7.1703,3.584 7.1703,4.493" id="Fill-3" fill="#F97F78"></path>
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="Clip-6"></g>
+                <polygon id="Stroke-5" stroke="#002184" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" mask="url(#mask-2)" points="0.5 16.5 16.5 16.5 16.5 0.5 0.5 0.5"></polygon>
+                <polygon id="Stroke-7" stroke="#002184" stroke-linecap="round" stroke-linejoin="round" mask="url(#mask-2)" points="0.5004 10.4999 3.5004 7.4999 6.5004 10.4999 11.5004 4.4999 16.5004 10.4999 16.5004 16.4999 0.5004 16.4999"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>
