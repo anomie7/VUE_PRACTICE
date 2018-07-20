@@ -11,15 +11,22 @@
 </head>
 <template id="dropdown-template">
     <div class="dropdown">
-        <div class="dropdown-title" @click="dropdownShow">
+        <div :class="{'disabled-dropdown':!titleShow, 'dropdown-title': titleShow}" @click="dropdownShow">
             <label class="title-label">{{titleMessage}}</label>
         </div>
         <div class="dropdown-scroll-hider" v-show="isDropdownShow" style="display: block; transform: translateY(0px);">
-            <div class="dropdown-container" v-show="isDropdownShow" style="display: block;">
+            <div class="dropdown-container" style="display: block;">
+                <div class="text-label-container" :data-val="labelText.TICKET_MONTH_LIST" @click="chooseTextLabel(index, $event)" v-for="(labelText, index) in labelTextList"
+                    :key="labelText.TICKET_MONTH_LIST">
+                    <label class="dateTicket-text-label">
+                        {{labelText.YEAR}}년 {{labelText.MONTH}}월
+                    </label>
+                </div>
             </div>
         </div>
     </div>
 </template>
+
 <body>
     <div id="app">
         <div @click="showTicketPopup">구매하기</div>
@@ -43,7 +50,7 @@
                         <input type="hidden" id="date-popup-item-id" name="item_id" value="" />
                         <div class="dateticket-list" style="display: none;"></div>
                         <div id="selector-container">
-                            <dropdown-template title-message="월을 입력하세요."></dropdown-template>
+                            <dropdown-template :title-message="monthTitle" :title-show="true" :label-text-list="labelTextList" @choose="chooseDropdownLabel"></dropdown-template>
                             <dropdown-template title-message="날짜를 선택하세요."></dropdown-template>
                             <dropdown-template title-message="관람시간을 선택하세요."></dropdown-template>
                             <dropdown-template title-message="옵션을 선택하세요."></dropdown-template>
@@ -59,32 +66,62 @@
     <script>
         Vue.component('dropdown-template', {
             template: '#dropdown-template',
-            data: function(){
-               return {isDropdownShow: false};
+            data: function () {
+                return {
+                    isDropdownShow: false
+                }
             },
-            props: ['titleMessage'],
+            props: {
+                'titleMessage': {
+                    type: String,
+                    required: true
+                },
+                'titleShow': {
+                    type: Boolean,
+                    default: function () {
+                        return false;
+                    }
+                },
+                'labelTextList': Array
+            },
             methods: {
-                dropdownShow(){
-                    this.isDropdownShow =  !this.isDropdownShow;
+                dropdownShow(e) {
+                    if (e.currentTarget.className == 'dropdown-title') {
+                        this.isDropdownShow = !this.isDropdownShow;
+                    }
+                },
+                chooseTextLabel(i, e) {
+                    this.isDropdownShow = false;
+                    this.$emit('choose', this.labelTextList[i]);
                 }
             }
-        })
+        });
+
         var app = new Vue({
             el: '#app',
             data: {
+                monthTitle: "월을 입력하세요.",
+                monthTitleShow: true,
                 classObject: {
                     'show-ticket': false
-                }
+                },
+                labelTextList: [
+                    { "MONTH": 7, "YEAR": "2018", "TICKET_MONTH_LIST": "2018-07" }, 
+                    { "MONTH": 8, "YEAR": "2018", "TICKET_MONTH_LIST": "2018-08" }, 
+                    { "MONTH": 9, "YEAR": "2018", "TICKET_MONTH_LIST": "2018-09" },
+                    { "MONTH": 10, "YEAR": "2018", "TICKET_MONTH_LIST": "2018-10" }, 
+                    { "MONTH": 11, "YEAR": "2018", "TICKET_MONTH_LIST": "2018-11" }
+                    ]
             },
             methods: {
-                showTicketPopup(){
+                showTicketPopup() {
                     this.classObject['show-ticket'] = true;
                 },
-                closeTicketPopup(){
+                closeTicketPopup() {
                     this.classObject['show-ticket'] = false;
                 },
-                dropdownShow(e){
-
+                chooseDropdownLabel(labelText){
+                    this.monthTitle = `${labelText.YEAR}년 ${labelText.MONTH}월`;
                 }
             }
         })
