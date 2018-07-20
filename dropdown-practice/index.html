@@ -14,8 +14,8 @@
         <div class="dropdown-title" @click="dropdownShow">
             <label class="title-label">{{titleMessage}}</label>
         </div>
-        <div class="dropdown-scroll-hider">
-            <div class="dropdown-container">
+        <div class="dropdown-scroll-hider" v-show="isDropdownShow" style="display: block; transform: translateY(0px);">
+            <div class="dropdown-container" v-show="isDropdownShow" style="display: block;">
             </div>
         </div>
     </div>
@@ -60,12 +60,12 @@
         Vue.component('dropdown-template', {
             template: '#dropdown-template',
             data: function(){
-               return '';
+               return {isDropdownShow: false};
             },
             props: ['titleMessage'],
             methods: {
                 dropdownShow(){
-                    
+                    this.isDropdownShow =  !this.isDropdownShow;
                 }
             }
         })
