@@ -37,8 +37,10 @@ var app = new Vue({
     monthTitle: "월을 입력하세요.",
     dateTitle: "날짜를 선택하세요.",
     timeTitle: "관람시간을 선택하세요.",
+    optionTitle: "옵션을 선택하세요.",
     dateTitleShow: false,
     timeTitleShow: false,
+    optionTitleShow: false,
     classObject: {
       "show-ticket": false
     },
@@ -65,6 +67,22 @@ var app = new Vue({
         { TICKET_TIME: "17:00:00", TICKET_VIEW_TIME: "오후 05:00" },
         { TICKET_TIME: "18:00:00", TICKET_VIEW_TIME: "오후 06:00" },
         { TICKET_TIME: "19:00:00", TICKET_VIEW_TIME: "오후 07:00" }
+      ],
+      option: [
+        {
+          TICKET_ID: 4768,
+          SELLING_PRICE: 12000,
+          TICKET_NAME: "일반석",
+          TICKET_CNT: 20,
+          TICKET_SOLD_CNT: 0
+        },
+        {
+          TICKET_ID: 4768,
+          SELLING_PRICE: 10000,
+          TICKET_NAME: "학생석",
+          TICKET_CNT: 20,
+          TICKET_SOLD_CNT: 0
+        }
       ]
     }
   },
@@ -81,6 +99,9 @@ var app = new Vue({
     },
     timeLabelList() {
       return this.labelTextList["time"].map(val => val.TICKET_VIEW_TIME);
+    },
+    optionLabelList(){
+      return this.labelTextList["option"].map(val => `${val.TICKET_NAME}|${val.SELLING_PRICE}원`);
     }
   },
   methods: {
@@ -102,7 +123,10 @@ var app = new Vue({
           break;
         case "time":
           this.timeTitle = labelText;
+          this.optionTitleShow = true;
           break;
+        case "option":
+          this.optionTitle = labelText;
         default:
           break;
       }
