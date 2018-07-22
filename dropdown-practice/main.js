@@ -1,9 +1,7 @@
 Vue.component("dropdown-template", {
   template: "#dropdown-template",
   data: function() {
-    return {
-      isDropdownShow: false
-    };
+    return { isDropdownShow: this.dropDownShow };
   },
   props: {
     titleMessage: {
@@ -11,6 +9,12 @@ Vue.component("dropdown-template", {
       required: true
     },
     titleShow: {
+      type: Boolean,
+      default: function() {
+        return false;
+      }
+    },
+    dropDownShow: {
       type: Boolean,
       default: function() {
         return false;
@@ -38,9 +42,14 @@ var app = new Vue({
     dateTitle: "날짜를 선택하세요.",
     timeTitle: "관람시간을 선택하세요.",
     optionTitle: "옵션을 선택하세요.",
+    monthTitleShow: true,
     dateTitleShow: false,
     timeTitleShow: false,
     optionTitleShow: false,
+    monthDropdownShow: false,
+    dateDropdownShow: false,
+    timeDropdownShow: false,
+    optionDropdownShow: false,
     classObject: {
       "show-ticket": false
     },
@@ -100,8 +109,10 @@ var app = new Vue({
     timeLabelList() {
       return this.labelTextList["time"].map(val => val.TICKET_VIEW_TIME);
     },
-    optionLabelList(){
-      return this.labelTextList["option"].map(val => `${val.TICKET_NAME}|${val.SELLING_PRICE}원`);
+    optionLabelList() {
+      return this.labelTextList["option"].map(
+        val => `${val.TICKET_NAME}|${val.SELLING_PRICE}원`
+      );
     }
   },
   methods: {
@@ -110,6 +121,13 @@ var app = new Vue({
     },
     closeTicketPopup() {
       this.classObject["show-ticket"] = false;
+      this.dateTitleShow = false;
+      this.timeTitleShow = false;
+      this.optionTitleShow = false;
+      this.monthTitle = "월을 입력하세요.";
+      this.dateTitle = "날짜를 선택하세요.";
+      this.timeTitle = "관람시간을 선택하세요.";
+      this.optionTitle = "옵션을 선택하세요.";
     },
     chooseDropdownLabel(labelText, key) {
       switch (key) {
