@@ -1,8 +1,10 @@
 Vue.component("dropdown-template", {
   template: "#dropdown-template",
-  data: function() {
-    return { isDropdownShow: this.dropDownShow };
-  },
+  computed: {
+    isDropDownShow() {
+    return this.dropDownShow
+  }
+},
   props: {
     titleMessage: {
       type: String,
@@ -23,13 +25,13 @@ Vue.component("dropdown-template", {
     labelTextList: Array
   },
   methods: {
-    dropdownShow(e) {
+    disabledDropdown(e) {
       if (e.currentTarget.className == "dropdown-title") {
-        this.isDropdownShow = !this.isDropdownShow;
+        this.$emit('disabled', this.$vnode.key);
       }
     },
     chooseTextLabel(i) {
-      this.isDropdownShow = false;
+      this.$emit('disabled', this.$vnode.key);
       this.$emit("choose", this.labelTextList[i], this.$vnode.key);
     }
   }
@@ -124,6 +126,10 @@ var app = new Vue({
       this.dateTitleShow = false;
       this.timeTitleShow = false;
       this.optionTitleShow = false;
+      this.monthDropdownShow = false;
+      this.dateDropdownShow = false;
+      this.timeDropdownShow = false;
+      this.optionDropdownShow = false;
       this.monthTitle = "월을 입력하세요.";
       this.dateTitle = "날짜를 선택하세요.";
       this.timeTitle = "관람시간을 선택하세요.";
@@ -145,6 +151,31 @@ var app = new Vue({
           break;
         case "option":
           this.optionTitle = labelText;
+          break;
+        default:
+          break;
+      }
+    },
+    dropDowndisabled(key){
+      switch (key) {
+        case "month":
+          this.monthDropdownShow = !this.monthDropdownShow ;
+          this.dateDropdownShow = false;
+          this.timeDropdownShow = false;
+          this.optionDropdownShow = false;
+          break;
+        case "date":
+          this.dateDropdownShow = !this.dateDropdownShow;
+          this.timeDropdownShow = false;
+          this.optionDropdownShow = false;
+          break;
+        case "time":
+          this.timeDropdownShow = !this.timeDropdownShow;
+          this.optionDropdownShow = false;
+          break;
+        case "option":
+          this.optionDropdownShow = !this.optionDropdownShow;
+          break;
         default:
           break;
       }
