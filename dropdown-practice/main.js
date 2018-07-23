@@ -140,14 +140,23 @@ var app = new Vue({
         case "month":
           this.monthTitle = labelText;
           this.dateTitleShow = true;
+          this.timeTitleShow = false;
+          this.optionTitleShow = false;
+          this.dateTitle = "날짜를 선택하세요.";
+          this.timeTitle = "관람시간을 선택하세요.";
+          this.optionTitle = "옵션을 선택하세요.";
           break;
         case "date":
           this.dateTitle = labelText;
           this.timeTitleShow = true;
+          this.optionTitleShow = false;
+          this.timeTitle = "관람시간을 선택하세요.";
+          this.optionTitle = "옵션을 선택하세요.";
           break;
         case "time":
           this.timeTitle = labelText;
           this.optionTitleShow = true;
+          this.optionTitle = "옵션을 선택하세요.";
           break;
         case "option":
           this.optionTitle = labelText;
