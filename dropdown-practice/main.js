@@ -52,6 +52,7 @@ var app = new Vue({
     dateDropdownShow: false,
     timeDropdownShow: false,
     optionDropdownShow: false,
+    isAppendedTicket: false,
     classObject: {
       "show-ticket": false
     },
@@ -134,6 +135,7 @@ var app = new Vue({
       this.dateTitle = "날짜를 선택하세요.";
       this.timeTitle = "관람시간을 선택하세요.";
       this.optionTitle = "옵션을 선택하세요.";
+      this.isAppendedTicket = false;
     },
     chooseDropdownLabel(labelText, key) {
       switch (key) {
@@ -160,6 +162,7 @@ var app = new Vue({
           break;
         case "option":
           this.optionTitle = labelText;
+          this.isAppendedTicket = true;
           break;
         default:
           break;

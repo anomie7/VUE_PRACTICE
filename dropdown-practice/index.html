@@ -31,14 +31,14 @@
     <div id="app">
         <div @click="showTicketPopup">구매하기</div>
         <div id="popup-date-ticket" class="popup" :class="classObject" @click.self="closeTicketPopup">
-            <div id="dateticket-scroll-hider">
+            <div id="dateticket-scroll-hider" :class="{'appended-ticket-panel': isAppendedTicket}">
                 <div class="bar-button-left btn-ticket-close" @click="closeTicketPopup">
                     <img src="./images/front/ic_cancel_square_dark.svg" />
                 </div>
                 <div class="ticket-text-container">
                     티켓 선택
                 </div>
-                <div class="total-wrapper">
+                <div class="total-wrapper" style="display: block;" v-show="isAppendedTicket">
                     선택한 총 티켓금액 &nbsp;&nbsp;
                     <span class="total-won">원</span>
                     <div class="total-price">0</div>
@@ -48,7 +48,7 @@
                 <div class="ticket-wrapper">
                     <form action="/orderPayments" method="post" id="date-ticket-form">
                         <input type="hidden" id="date-popup-item-id" name="item_id" value="" />
-                        <div class="dateticket-list" style="display: none;"></div>
+                        <div class="dateticket-list" style="display: none;" v-show="isAppendedTicket"></div>
                         <div id="selector-container">
                             <dropdown-template key="month" :title-message="monthTitle" :drop-down-show="monthDropdownShow" :title-show="monthTitleShow" :label-text-list="monthLabelList" @choose="chooseDropdownLabel" @disabled="dropDowndisabled"></dropdown-template>
                             <dropdown-template key="date" :title-message="dateTitle" :drop-down-show="dateDropdownShow" :title-show="dateTitleShow" :label-text-list="dateLabelList" @choose="chooseDropdownLabel" @disabled="dropDowndisabled"></dropdown-template>
