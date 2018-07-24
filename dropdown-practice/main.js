@@ -2,9 +2,9 @@ Vue.component("dropdown-template", {
   template: "#dropdown-template",
   computed: {
     isDropDownShow() {
-    return this.dropDownShow
-  }
-},
+      return this.dropDownShow;
+    }
+  },
   props: {
     titleMessage: {
       type: String,
@@ -27,25 +27,33 @@ Vue.component("dropdown-template", {
   methods: {
     disabledDropdown(e) {
       if (e.currentTarget.className == "dropdown-title") {
-        this.$emit('disabled', this.$vnode.key);
+        this.$emit("disabled", this.$vnode.key);
       }
     },
     chooseTextLabel(i) {
-      this.$emit('disabled', this.$vnode.key);
+      this.$emit("disabled", this.$vnode.key);
       this.$emit("choose", this.labelTextList[i], this.$vnode.key);
     }
   }
 });
 
 Vue.component("dateticket-panel", {
-  template: '#dateticket-panel-template',
-  data: function(){
-    return false;
+  template: "#dateticket-panel-template",
+  data: function() {
+    return {};
   },
   props: {
-    
+    dateTicketText: {
+      type: Object,
+      required: true
+    }
+  },
+  methods: {
+    dateTicketRemove() {
+      return;
+    }
   }
-})
+});
 
 var app = new Vue({
   el: "#app",
@@ -106,7 +114,24 @@ var app = new Vue({
           TICKET_SOLD_CNT: 0
         }
       ]
-    }
+    },
+    dateTicketList: [
+      {
+        PRICE: 35000,
+        TICKET_TIME: "19:30:00",
+        SELLING_PRICE: 10000,
+        TICKET_VIEW_DATE: "2018년 07월 27일",
+        TICKET_SOLD_CNT: 0,
+        SALE_MAX: 10,
+        TICKET_ID: 5444,
+        TICKET_SUB_NAME: "",
+        TICKET_VIEW_TIME: "오후 07:30",
+        TS_ID: 2030,
+        TICKET_DATE: "2018-07-27",
+        TICKET_NAME: "선착순 할인",
+        TICKET_CNT: 20
+      }
+    ]
   },
   computed: {
     monthLabelList() {
@@ -126,6 +151,10 @@ var app = new Vue({
       return this.labelTextList["option"].map(
         val => `${val.TICKET_NAME}|${val.SELLING_PRICE}원`
       );
+    },
+    totalPrice(){
+      return this.dateTicketList.map( obj => obj.SELLING_PRICE)
+                                        .reduce((prev, curr) => prev + curr);
     }
   },
   methods: {
@@ -178,10 +207,10 @@ var app = new Vue({
           break;
       }
     },
-    dropDowndisabled(key){
+    dropDowndisabled(key) {
       switch (key) {
         case "month":
-          this.monthDropdownShow = !this.monthDropdownShow ;
+          this.monthDropdownShow = !this.monthDropdownShow;
           this.dateDropdownShow = false;
           this.timeDropdownShow = false;
           this.optionDropdownShow = false;
@@ -204,3 +233,19 @@ var app = new Vue({
     }
   }
 });
+
+// app.$data.dateTicketList.push({
+//   PRICE: 35000,
+//   TICKET_TIME: "19:30:00",
+//   SELLING_PRICE: 12000,
+//   TICKET_VIEW_DATE: "2018년 07월 27일",
+//   TICKET_SOLD_CNT: 0,
+//   SALE_MAX: 10,
+//   TICKET_ID: 5465,
+//   TICKET_SUB_NAME: "",
+//   TICKET_VIEW_TIME: "오후 07:30",
+//   TS_ID: 2030,
+//   TICKET_DATE: "2018-07-27",
+//   TICKET_NAME: "일반 할인",
+//   TICKET_CNT: 50
+// });

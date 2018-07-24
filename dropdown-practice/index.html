@@ -26,16 +26,17 @@
         </div>
     </div>
 </template>
+
 <template id="dateticket-panel-template">
     <div class="dateticket-panel">
         <div class="dateticket-panel-body">
-            <div class="dateTicket-remove">
+            <div class="dateTicket-remove" @click="dateTicketRemove">
                 <img class="ic-cancel-pink" src="./images/front/ic_cancel_pink.svg">
             </div>
-            <div class="dateticket-name">선착순 할인</div>
-            <div class="dateticket-date">2018년 07월 27일 오후 07:30</div>
-            <div class="dateticket-sub-name"></div>
-            <div class="dateticket-price-wrapper"><del class="dateticket_price">35,000원&nbsp;</del>&nbsp;&nbsp;<span class="dateticket-selling-price">10,000</span>원</div>
+            <div class="dateticket-name">{{dateTicketText.TICKET_NAME}}</div>
+            <div class="dateticket-date">{{dateTicketText.TICKET_VIEW_DATE }} {{dateTicketText.TICKET_VIEW_TIME}}</div>
+            <div class="dateticket-sub-name">{{dateTicketText.TICKET_SUB_NAME}}</div>
+            <div class="dateticket-price-wrapper"><del class="dateticket_price">{{dateTicketText.PRICE}}원&nbsp;</del>&nbsp;&nbsp;<span class="dateticket-selling-price">{{dateTicketText.SELLING_PRICE}}</span>원</div>
         </div>
         <div class="dateticket-btn-wrapper">	
             <button class="btn btn-link dateticket-cnt-minus"><img class="dateticekt-amount-btn" src="./images/front/ic_minus_gray.svg"></button>
@@ -44,6 +45,7 @@
         </div>
     </div>
 </template>
+
 <body>
     <div id="app">
         <div @click="showTicketPopup">구매하기</div>
@@ -58,7 +60,7 @@
                 <div class="total-wrapper" style="display: block;" v-show="isAppendedTicket">
                     선택한 총 티켓금액 &nbsp;&nbsp;
                     <span class="total-won">원</span>
-                    <div class="total-price">0</div>
+                    <div class="total-price">{{totalPrice}}</div>
                 </div>
                 <div class="ticket-horizontal-line">
                 </div>
@@ -66,7 +68,7 @@
                     <form action="/orderPayments" method="post" id="date-ticket-form">
                         <input type="hidden" id="date-popup-item-id" name="item_id" value="" />
                         <div class="dateticket-list" style="display: none;" v-show="isAppendedTicket">
-                                <dateticket-panel></dateticket-panel>
+                                <dateticket-panel :date-ticket-text="dateTicket" v-for="dateTicket in dateTicketList" :key="dateTicket.TICKET_ID"></dateticket-panel>
                         </div>
                         <div id="selector-container">
                             <dropdown-template key="month" :title-message="monthTitle" :drop-down-show="monthDropdownShow" :title-show="monthTitleShow" :label-text-list="monthLabelList" @choose="chooseDropdownLabel" @disabled="dropDowndisabled"></dropdown-template>
