@@ -26,7 +26,24 @@
         </div>
     </div>
 </template>
-
+<template id="dateticket-panel-template">
+    <div class="dateticket-panel">
+        <div class="dateticket-panel-body">
+            <div class="dateTicket-remove">
+                <img class="ic-cancel-pink" src="./images/front/ic_cancel_pink.svg">
+            </div>
+            <div class="dateticket-name">선착순 할인</div>
+            <div class="dateticket-date">2018년 07월 27일 오후 07:30</div>
+            <div class="dateticket-sub-name"></div>
+            <div class="dateticket-price-wrapper"><del class="dateticket_price">35,000원&nbsp;</del>&nbsp;&nbsp;<span class="dateticket-selling-price">10,000</span>원</div>
+        </div>
+        <div class="dateticket-btn-wrapper">	
+            <button class="btn btn-link dateticket-cnt-minus"><img class="dateticekt-amount-btn" src="./images/front/ic_minus_gray.svg"></button>
+            <label class="dateticket-sold-cnt-label">1</label>
+            <button class="btn btn-link dateticket-cnt-plus"><img class="dateticekt-amount-btn" src="./images/front/ic_plus_gray.svg"></button>
+        </div>
+    </div>
+</template>
 <body>
     <div id="app">
         <div @click="showTicketPopup">구매하기</div>
@@ -48,7 +65,9 @@
                 <div class="ticket-wrapper">
                     <form action="/orderPayments" method="post" id="date-ticket-form">
                         <input type="hidden" id="date-popup-item-id" name="item_id" value="" />
-                        <div class="dateticket-list" style="display: none;" v-show="isAppendedTicket"></div>
+                        <div class="dateticket-list" style="display: none;" v-show="isAppendedTicket">
+                                <dateticket-panel></dateticket-panel>
+                        </div>
                         <div id="selector-container">
                             <dropdown-template key="month" :title-message="monthTitle" :drop-down-show="monthDropdownShow" :title-show="monthTitleShow" :label-text-list="monthLabelList" @choose="chooseDropdownLabel" @disabled="dropDowndisabled"></dropdown-template>
                             <dropdown-template key="date" :title-message="dateTitle" :drop-down-show="dateDropdownShow" :title-show="dateTitleShow" :label-text-list="dateLabelList" @choose="chooseDropdownLabel" @disabled="dropDowndisabled"></dropdown-template>

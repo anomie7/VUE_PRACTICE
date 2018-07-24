@@ -37,6 +37,16 @@ Vue.component("dropdown-template", {
   }
 });
 
+Vue.component("dateticket-panel", {
+  template: '#dateticket-panel-template',
+  data: function(){
+    return false;
+  },
+  props: {
+    
+  }
+})
+
 var app = new Vue({
   el: "#app",
   data: {
