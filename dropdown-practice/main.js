@@ -51,6 +51,12 @@ Vue.component("dateticket-panel", {
   methods: {
     dateTicketRemove() {
       return;
+    },
+    sellingPriceMinus(){
+      this.$emit('minus');
+    },
+    sellingPricePlus(){
+      this.$emit('plus');
     }
   }
 });
@@ -230,6 +236,12 @@ var app = new Vue({
         default:
           break;
       }
+    },
+    sellingPricePlus(){
+      console.log('plus');
+    },
+    sellingPriceMinus(){
+      console.log('minus');
     }
   }
 });
