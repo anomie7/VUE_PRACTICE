@@ -53,10 +53,10 @@ Vue.component("dateticket-panel", {
       return;
     },
     sellingPriceMinus(){
-      this.$emit('minus');
+      this.$emit('minus', this.$vnode.key);
     },
     sellingPricePlus(){
-      this.$emit('plus');
+      this.$emit('plus', this.$vnode.key);
     }
   }
 });
@@ -137,7 +137,8 @@ var app = new Vue({
         TICKET_NAME: "선착순 할인",
         TICKET_CNT: 20
       }
-    ]
+    ],
+    sellingPrice: 0
   },
   computed: {
     monthLabelList() {
@@ -157,6 +158,11 @@ var app = new Vue({
       return this.labelTextList["option"].map(
         val => `${val.TICKET_NAME}|${val.SELLING_PRICE}원`
       );
+    },
+    sumTotalPrice(){
+      let result = this.totalPrice + this.sellingPrice;
+      if(result <= this.totalPrice) return this.totalPrice;
+      return result;
     },
     totalPrice(){
       return this.dateTicketList.map( obj => obj.SELLING_PRICE)
@@ -237,27 +243,14 @@ var app = new Vue({
           break;
       }
     },
-    sellingPricePlus(){
-      console.log('plus');
+    sellingPricePlus(k){
+      console.log(`${k}  plus`);
+      this.sellingPrice +=  this.dateTicketList[k].SELLING_PRICE;
     },
-    sellingPriceMinus(){
-      console.log('minus');
+    sellingPriceMinus(k){
+      console.log(`${k}  minus`);
+      if( this.sellingPrice  <= this.totalPrice) return;
+      this.sellingPrice -=  this.dateTicketList[k].SELLING_PRICE;
     }
   }
 });
-
-// app.$data.dateTicketList.push({
-//   PRICE: 35000,
-//   TICKET_TIME: "19:30:00",
-//   SELLING_PRICE: 12000,
-//   TICKET_VIEW_DATE: "2018년 07월 27일",
-//   TICKET_SOLD_CNT: 0,
-//   SALE_MAX: 10,
-//   TICKET_ID: 5465,
-//   TICKET_SUB_NAME: "",
-//   TICKET_VIEW_TIME: "오후 07:30",
-//   TS_ID: 2030,
-//   TICKET_DATE: "2018-07-27",
-//   TICKET_NAME: "일반 할인",
-//   TICKET_CNT: 50
-// });

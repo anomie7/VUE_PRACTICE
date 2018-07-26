@@ -60,7 +60,7 @@
                 <div class="total-wrapper" style="display: block;" v-show="isAppendedTicket">
                     선택한 총 티켓금액 &nbsp;&nbsp;
                     <span class="total-won">원</span>
-                    <div class="total-price">{{totalPrice}}</div>
+                    <div class="total-price">{{sumTotalPrice}}</div>
                 </div>
                 <div class="ticket-horizontal-line">
                 </div>
@@ -68,7 +68,7 @@
                     <form action="/orderPayments" method="post" id="date-ticket-form">
                         <input type="hidden" id="date-popup-item-id" name="item_id" value="" />
                         <div class="dateticket-list" style="display: none;" v-show="isAppendedTicket">
-                                <dateticket-panel :date-ticket-text="dateTicket" v-for="dateTicket in dateTicketList" :key="dateTicket.TICKET_ID" @plus="sellingPricePlus" @minus="sellingPriceMinus"></dateticket-panel>
+                                <dateticket-panel :date-ticket-text="dateTicket" v-for="(dateTicket, index) in dateTicketList" :key="index" @plus="sellingPricePlus" @minus="sellingPriceMinus"></dateticket-panel>
                         </div>
                         <div id="selector-container">
                             <dropdown-template key="month" :title-message="monthTitle" :drop-down-show="monthDropdownShow" :title-show="monthTitleShow" :label-text-list="monthLabelList" @choose="chooseDropdownLabel" @disabled="dropDowndisabled"></dropdown-template>
