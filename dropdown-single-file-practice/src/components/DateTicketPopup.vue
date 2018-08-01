@@ -20,7 +20,7 @@
                     <form action="/orderPayments" method="post" id="date-ticket-form">
                         <input type="hidden" id="date-popup-item-id" name="item_id" value="" />
                         <div class="dateticket-list" style="display: none;" v-show="isAppendedTicket">
-                                <dropdown-panel :date-ticket-text="dateTicket" v-for="(dateTicket, index) in dateTicketList" :key="index" @plus="sellingPricePlus" @minus="sellingPriceMinus"></dropdown-panel>
+                                <dropdown-panel :date-ticket-text="dateTicket" v-for="(dateTicket, index) in dateTicketList" :key="index" @plus="sellingPricePlus" @minus="sellingPriceMinus" @remove="removePanel"></dropdown-panel>
                         </div>
                         <div id="selector-container">
                             <dropdown key="month" :title-message="monthTitle" :drop-down-show="monthDropdownShow" :title-show="monthTitleShow" :label-text-list="monthLabelList" @choose="chooseDropdownLabel" @disabled="dropDowndisabled"></dropdown>

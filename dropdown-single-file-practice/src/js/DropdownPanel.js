@@ -13,6 +13,7 @@ export default {
     },
     methods: {
       dateTicketRemove() {
+        this.$emit('remove', this.$vnode.key);
         return;
       },
       sellingPriceMinus(){

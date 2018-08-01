@@ -197,6 +197,10 @@ export default {
       this.dateTicketList[k].SOLD_CNT = c;
       if( this.sellingPrice  == 0) return;
       this.sellingPrice -=  this.dateTicketList[k].SELLING_PRICE;
+    },
+    removePanel(k){
+      console.log(`${k} remove`);
+      this.dateTicketList.length == 1 ?  this.isAppendedTicket = false : this.dateTicketList.splice(k ,1);
     }
   },
   components: {Dropdown, DropdownPanel}
