@@ -11,34 +11,11 @@
         </div>
         <div class="dateticket-btn-wrapper">	
             <button class="btn btn-link dateticket-cnt-minus" @click.prevent="sellingPriceMinus"><img class="dateticekt-amount-btn" src="../assets/images/front/ic_minus_gray.svg"></button>
-            <label class="dateticket-sold-cnt-label">1</label>
+            <label class="dateticket-sold-cnt-label">{{soldCnt}}</label>
             <button class="btn btn-link dateticket-cnt-plus" @click.prevent="sellingPricePlus"><img class="dateticekt-amount-btn" src="../assets/images/front/ic_plus_gray.svg"></button>
         </div>
     </div>
 </template>
 
-<script>
-export default {
-  name: 'dropdown-panel',
-  data: function() {
-    return {};
-  },
-  props: {
-    dateTicketText: {
-      type: Object,
-      required: true
-    }
-  },
-  methods: {
-    dateTicketRemove() {
-      return;
-    },
-    sellingPriceMinus(){
-      this.$emit('minus', this.$vnode.key);
-    },
-    sellingPricePlus(){
-      this.$emit('plus', this.$vnode.key);
-    }
-  }
-}
+<script src="../js/DropdownPanel.js">
 </script>
