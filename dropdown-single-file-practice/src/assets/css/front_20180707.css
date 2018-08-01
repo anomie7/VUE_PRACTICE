@@ -1,0 +1,465 @@
+body {
+    font-family: 'Spoqa Han Sans', 'Sans-serif';
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    word-break: keep-all;
+    overflow-x: hidden;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    letter-spacing: -0.5px;
+}
+
+body {
+    font-family: 'Spoqa Han Sans', 'Sans-serif';
+    word-break: keep-all;
+    letter-spacing: -0.5px;
+}
+
+.show-ticket {
+    display: flex !important;
+    display: -webkit-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    display: none;
+}
+
+.popup .bar-button-left {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.popup .ticket-text-container {
+    display: inline-block;
+    font-family: 'Spoqa Han Sans', 'Sans-serif';
+    font-size: 15px;
+    text-align: center;
+    color: #2b52cf;
+    top: 10px;
+    left: 43%;
+    position: absolute;
+}
+
+.popup .total-wrapper {
+    display: none;
+    width: 100%;
+    height: 40px;
+    font-size: 15px;
+    font-family: 'Spoqa Han Sans', 'Sans-serif';
+    color: #ffffff;
+    background: #ff5b5e;
+    text-align: left;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 9px;
+}
+
+.popup .total-won {
+    font-size: 17px;
+    font-family: 'Spoqa Han Sans', 'Sans-serif';
+    font-weight: bold;
+    float: right;
+}
+
+.popup .total-price {
+    font-size: 17px;
+    font-family: 'Spoqa Han Sans', 'Sans-serif';
+    font-weight: bold;
+    float: right;
+}
+
+.popup .ticket-horizontal-line {
+    width: 100%;
+    height: 2px;
+    border-bottom: 0px;
+}
+
+.popup .ticket-wrapper {
+    position: absolute;
+    width: 110%;
+    height: 100%;
+    background: #ffffff;
+    overflow: hidden;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+
+.dateTicket-text-label {
+    width: 211px;
+    height: 11px;
+    font-family: 'Spoqa Han Sans', 'Sans-serif';
+    font-size: 14px;
+    font-weight: 400;
+    text-align: left;
+    color: #303030;
+    position: relative;
+    top: 11px;
+    left: 16px;
+}
+
+/* date-ticket-popup start */
+#popup-date-ticket{
+	align-items: center;
+}
+
+.show-ticket {
+	display: flex !important;
+    display: -webkit-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#popup-date-ticket div#dateticket-scroll-hider.appended-ticket-panel{
+	height: 576px;
+}
+
+#popup-date-ticket #dateticket-scroll-hider{
+	height: 296px;
+	position: relative;
+	width: 360px;
+	background: #ffffff;
+	overflow: hidden;
+	box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+#popup-date-ticket #dateticket-scroll-hider .buttons{
+	position: absolute;
+	width: 360px;
+	height: 40px;
+	bottom: 0px;
+	z-index: 350;
+}
+
+#popup-date-ticket #selector-container {
+	z-index: 400;
+	height: 250px;
+	width: 360px;
+	bottom: 0px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-top: 1px solid #dbdbdb;
+}
+
+#popup-date-ticket .ticket-wrapper {
+	height: 100%;
+	overflow-y: hidden;
+}
+
+#popup-date-ticket .ticket-wrapper .dateticket-list{
+	display: flex;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	width: 100%;
+	flex-direction: column;
+    justify-items: flex-start;
+    align-items: center;
+	background-color: rgb(242, 242, 242);
+}
+#popup-date-ticket .ticket-wrapper .dateticket-list:after{
+	content: '';
+	margin-bottom: 30px;
+}
+
+#popup-date-ticket .ticket-wrapper .dateticket-panel{
+	display: flex;
+    flex-direction: column;
+	width: 88%;
+	min-height: 146px;
+    border-radius: 4px;
+    background-color: #ffffff;
+    border: solid 1px #ff5b5e;
+	margin: 24px 0px 0px 0px;
+	box-shadow: 0px 10px 17px -8px rgba(0,0,0,0.40);
+}
+
+#popup-date-ticket .ticket-wrapper .dateticket-panel .dateticket-name{
+	font-size: 16px;
+    font-family: 'Spoqa Han Sans', 'Sans-serif';
+    font-weight: bold;
+    text-align: left;
+	color: #303030;
+	margin: 0px 0px 0px 18px;
+}
+
+#popup-date-ticket .ticket-wrapper .dateticket-panel .dateticket-sub-name {
+	width: 247px;
+	font-family: 'Spoqa Han Sans', 'Sans-serif';
+	font-size: 12px;
+	height: 17px;
+	text-align: left;
+	color: #9b9b9b;
+	margin: 9px 0px 0px 18px;
+}
+
+#popup-date-ticket .ticket-wrapper .dateticket-panel .dateticket-date{
+	width: 230px;
+	font-family: 'Spoqa Han Sans', 'Sans-serif';
+	font-size: 14px;
+	font-weight: 400;
+	text-align: left;
+	color: #6b6b6b;
+	margin: 0px 0px 0px 18px;
+}
+
+#popup-date-ticket .ticket-wrapper .dateticket-panel .dateticket-panel-body .dateticket-price-wrapper{
+	text-align: right;
+    padding-right: 5%;
+	font-size: 17px;
+	margin-bottom: 5px;
+}
+#popup-date-ticket .ticket-wrapper .dateticket-panel .dateticket-price-wrapper .dateticket_price {
+	width: 80px;
+	height: 10%;
+	font-family: 'Spoqa Han Sans', 'Sans-serif';
+	font-size: 14px;
+	font-weight: normal;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: 1.1;
+	letter-spacing: normal;
+	text-align: right;
+	color: #9b9b9b;
+	margin: 3px;
+  }
+
+  #popup-date-ticket .ticket-wrapper .dateticket-panel .dateticket-price-wrapper .dateticket-selling-price {
+	width: 67px;
+	font-family: 'Spoqa Han Sans', 'Sans-serif';
+	font-size: 17px;
+	font-weight: 700;
+	text-align: right;
+	color: #303030;
+	margin-bottom: 16px;
+  }
+
+  #popup-date-ticket .ticket-wrapper .dateticket-panel .dateticket-btn-wrapper{
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	border-top: solid 1px #dbdbdb;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 4px;
+}
+
+#popup-date-ticket .ticket-wrapper .dateticket-panel .dateticket-btn-wrapper .dateticket-cnt-minus, .dateticket-cnt-plus{
+	height: 100%;
+    width: 40px;
+    height: 30px;
+    padding: 0px;
+    outline: none;
+    text-decoration: none;
+}
+
+#popup-date-ticket .ticket-wrapper .dateticket-panel .dateticket-btn-wrapper .dateticekt-amount-btn{
+	width: 20px;
+	height: 20px;
+}
+
+#popup-date-ticket .ticket-wrapper .dateticket-panel .dateticket-btn-wrapper .dateticket-sold-cnt-label {
+	max-width: 100%;
+	min-width: 75%;
+	height: 100%;
+	font-family: 'Spoqa Han Sans', 'Sans-serif';
+	font-size: 16px;
+	font-weight: bold;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: 2;
+	letter-spacing: normal;
+	text-align: center;
+	color: #303030;
+  }
+#popup-date-ticket .ticket-wrapper .dateticket-panel .dateTicket-remove{
+	background-color: rgb(242, 242, 242);
+    top: -13px;
+    position: relative;
+    left: -10px;
+    width: 20px;
+    height: 7px;
+    cursor: pointer;
+}
+
+#popup-date-ticket .ticket-wrapper .dateticket-panel .dateTicket-remove .ic-cancel-pink{
+  object-fit: contain;
+  width: 20px;
+  height: 20px;
+  background-color: #ffffff;
+  border: solid 1px #ff5b5e;
+  border-radius: 50%;
+}
+
+
+#popup-date-ticket #dateticket-scroll-hider .buttons .btn-max-blue {
+	width: 100%;
+	height: 100%;
+	font-family: 'Spoqa Han Sans', 'Sans-serif';
+	color: #ffffff;
+	border: none;
+	background: #2B52CF;
+	border-radius: 0px;
+	font-family: SpoqaHanSans;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    text-align: center;
+}
+/* date-ticket-popup end */
+
+/* ticket select dropdown start */
+	#popup-date-ticket .dropdown{
+		width: 320px;
+		height: 48px;
+		margin-top: 0px;
+	}
+
+	#popup-date-ticket .dropdown:nth-child(1) {
+		margin-top: 14px;
+	}
+
+	#popup-date-ticket .dropdown-title {
+       width: 320px;
+       height: 44px;
+       border-radius: 4px;
+       background-color: #ffffff;
+       border: solid 1px #2b52cf;
+	}
+	#popup-date-ticket .dropdown-title:after{
+		background-image: url(/resources/images/front/ic_down_gray.svg);
+		width: 16px;
+		display: inline-block;
+		height: 16px;
+		content: '';
+		vertical-align: middle;
+		background-repeat: no-repeat;
+		margin-left: 5px;
+		float: right;
+		margin-right: 14px;
+		margin-top: 12px;
+	}
+
+	#popup-date-ticket .disabled-dropdown {
+       width: 320px;
+       height: 40px;
+       border-radius: 4px;
+       background-color: #ffffff;
+       border: solid 1px #dbdbdb;
+   }
+
+   .disabled-dropdown .ic {
+       color: #dbdbdb;
+   }
+
+   .disabled-dropdown .title-label {
+       color: #9b9b9b;
+   }
+
+   #popup-date-ticket .dropdown-title:hover,
+   #popup-date-ticket .text-label-container:hover {
+       background-color: #f2f2f2;
+   }
+
+   #popup-date-ticket .title-label {
+	font-family: 'Spoqa Han Sans', 'Sans-serif';
+    font-size: 15px;
+    font-weight: 400;
+    margin-left: 14px;
+    margin-top: 11px;
+    display: inline-block;
+   }
+
+   #popup-date-ticket .dropdown-container {
+       display: none;
+       width: 337px;
+	   min-height: 130px;
+	   max-height: 200px;
+	   height: auto;
+       border-radius: 4px;
+       background-color: #ffffff;
+       overflow-y: scroll;
+       overflow-x: hidden;
+       z-index: 500;
+   }
+
+   #popup-date-ticket .dropdown-scroll-hider {
+       display: none;
+	   width: 320px;
+	   height: auto;
+	   border-radius: 4px;
+	   background-color: #ffffff;
+	   border: solid 1px #2b52cf;
+	   overflow: hidden;
+	   position: fixed;
+	   z-index: 500;
+	   margin-top: -3px;
+	   box-shadow: 0 0px 25px 0 rgba(0, 0, 0, 0.4);
+   }
+
+   #popup-date-ticket .text-label-container {
+       width: 320px;
+       height: 44px;
+       border-radius: 4px;
+       border-bottom: 1px solid #dbdbdb;
+   }
+
+   .dateTicket-text-label {
+	width: 211px;
+    height: 11px;
+    font-family: 'Spoqa Han Sans', 'Sans-serif';
+    font-size: 14px;
+    font-weight: 400;
+    text-align: left;
+    color: #303030;
+    position: relative;
+    top: 11px;
+    left: 16px;
+   }
+
+/*  */
+
+
+@media (min-width: 771px) {
+	.popup {
+		position: fixed;
+		top: 0px;
+		right: 0px;
+		bottom: 0px;
+		left: 0px;
+		background: rgba(0, 0, 0, 0.8);
+		z-index: 1000;
+	}
+
+	.popup .ticket-wrapper {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		background: #ffffff;
+		overflow: hidden;
+			overflow-y: hidden;
+		box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
+	}
+}
+
+@media (min-width: 431px) {
+	#popup-date-ticket .ticket-wrapper .dateticket-list {
+		height: 245px !important;
+	}
+}
