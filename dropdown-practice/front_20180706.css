@@ -2961,10 +2961,6 @@ button:focus {
 	align-items: center;
 }
 
-/*popup-sale-event start */
-
-/*popup-sale-event end  */
-
 .show-ticket {
 	display: flex !important;
     display: -webkit-flex;
@@ -3181,12 +3177,7 @@ button:focus {
 		margin-right: 14px;
 		margin-top: 12px;
 	}
-	/* body.reserve .panel-heading.collapsed:after{
-		background-image: url(/resources/images/front/ic_down_gray.svg);
-		width: 9px;
-		display: inline-block;
-		height: 9px;
-	} */
+
 	#popup-date-ticket .disabled-dropdown {
        width: 320px;
        height: 40px;
