@@ -19,12 +19,7 @@ var model = {
       "show-ticket": false
     },
     labelTextList: {
-      month: [
-        { MONTH: 7, YEAR: "2018", TICKET_MONTH_LIST: "2018-07" },
-        { MONTH: 8, YEAR: "2018", TICKET_MONTH_LIST: "2018-08" },
-        { MONTH: 9, YEAR: "2018", TICKET_MONTH_LIST: "2018-09" },
-        { MONTH: 10, YEAR: "2018", TICKET_MONTH_LIST: "2018-10" },
-        { MONTH: 11, YEAR: "2018", TICKET_MONTH_LIST: "2018-11" }
+      month: [  
       ],
       date: [
         { TICKET_DAY: 22, TICKET_DAY_OF_WEEK: "일요일" },
@@ -64,6 +59,22 @@ var model = {
         PRICE: 35000,
         TICKET_TIME: "19:30:00",
         SELLING_PRICE: 10000,
+        TICKET_VIEW_DATE: "2018년 08월 27일",
+        TICKET_SOLD_CNT: 0,
+        SALE_MAX: 10,
+        TICKET_ID: 5444,
+        TICKET_SUB_NAME: "",
+        TICKET_VIEW_TIME: "오후 07:30",
+        TS_ID: 2030,
+        TICKET_DATE: "2018-08-27",
+        TICKET_NAME: "선착순 할인",
+        TICKET_CNT: 20,
+        SOLD_CNT: 1
+      },
+      {
+        PRICE: 35000,
+        TICKET_TIME: "19:30:00",
+        SELLING_PRICE: 10000,
         TICKET_VIEW_DATE: "2018년 07월 27일",
         TICKET_SOLD_CNT: 0,
         SALE_MAX: 10,
@@ -72,6 +83,70 @@ var model = {
         TICKET_VIEW_TIME: "오후 07:30",
         TS_ID: 2030,
         TICKET_DATE: "2018-07-27",
+        TICKET_NAME: "선착순 할인",
+        TICKET_CNT: 20,
+        SOLD_CNT: 1
+      },
+      {
+        PRICE: 35000,
+        TICKET_TIME: "19:30:00",
+        SELLING_PRICE: 10000,
+        TICKET_VIEW_DATE: "2018년 07월 27일",
+        TICKET_SOLD_CNT: 0,
+        SALE_MAX: 10,
+        TICKET_ID: 5444,
+        TICKET_SUB_NAME: "",
+        TICKET_VIEW_TIME: "오후 07:30",
+        TS_ID: 2030,
+        TICKET_DATE: "2018-07-28",
+        TICKET_NAME: "선착순 할인",
+        TICKET_CNT: 20,
+        SOLD_CNT: 1
+      },
+      {
+        PRICE: 35000,
+        TICKET_TIME: "19:30:00",
+        SELLING_PRICE: 10000,
+        TICKET_VIEW_DATE: "2018년 08월 27일",
+        TICKET_SOLD_CNT: 0,
+        SALE_MAX: 10,
+        TICKET_ID: 5444,
+        TICKET_SUB_NAME: "",
+        TICKET_VIEW_TIME: "오후 07:30",
+        TS_ID: 2030,
+        TICKET_DATE: "2018-08-27",
+        TICKET_NAME: "선착순 할인",
+        TICKET_CNT: 20,
+        SOLD_CNT: 1
+      },
+      {
+        PRICE: 35000,
+        TICKET_TIME: "19:30:00",
+        SELLING_PRICE: 10000,
+        TICKET_VIEW_DATE: "2018년 07월 28일",
+        TICKET_SOLD_CNT: 0,
+        SALE_MAX: 10,
+        TICKET_ID: 5441,
+        TICKET_SUB_NAME: "",
+        TICKET_VIEW_TIME: "오후 07:30",
+        TS_ID: 2030,
+        TICKET_DATE: "2018-09-27",
+        TICKET_NAME: "선착순 할인",
+        TICKET_CNT: 20,
+        SOLD_CNT: 1
+      },
+      {
+        PRICE: 35000,
+        TICKET_TIME: "19:30:00",
+        SELLING_PRICE: 10000,
+        TICKET_VIEW_DATE: "2018년 07월 28일",
+        TICKET_SOLD_CNT: 0,
+        SALE_MAX: 10,
+        TICKET_ID: 5441,
+        TICKET_SUB_NAME: "",
+        TICKET_VIEW_TIME: "오후 07:30",
+        TS_ID: 2030,
+        TICKET_DATE: "2018-06-27",
         TICKET_NAME: "선착순 할인",
         TICKET_CNT: 20,
         SOLD_CNT: 1
@@ -86,14 +161,21 @@ export default {
       return model},
   computed: {
     monthLabelList() {
-      return this.labelTextList["month"].map(
-        val => `${val.YEAR}년 ${val.MONTH}월`
-      );
+      let tmp = this.labelTextList["month"].map(val => `${val.YEAR}년 ${val.MONTH + 1}월`);
+      return tmp.reduce( ( a, b ) => {
+        if( a.indexOf(b) < 0 ) a.push(b) ;
+        return a ;
+      }, []).sort();
     },
-    dateLabelList() {
-      return this.labelTextList["date"].map(
+    dateLabelList: {
+      get: function() {return this.labelTextList["date"].map(
         val => `${val.TICKET_DAY}일 | ${val.TICKET_DAY_OF_WEEK}`
-      );
+      )},
+      set: function(newValue){
+        const dayOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
+        let tmp = newValue.map((val) => ({'TICKET_DAY': val.DATE, 'TICKET_DAY_OF_WEEK': dayOfWeek[val.TICKET_DATE.getDay()] + '요일'}));
+        this.labelTextList["date"] = this.removeDuplicatedVal(tmp, 'TICKET_DAY');
+      }
     },
     timeLabelList() {
       return this.labelTextList["time"].map(val => val.TICKET_VIEW_TIME);
@@ -116,6 +198,8 @@ export default {
   methods: {
     showTicketPopup() {
       this.classObject["show-ticket"] = true;
+      let sample = this.dateTicketList.map(item => new Date(item.TICKET_DATE) );
+      this.labelTextList['month'] = sample.map((val) => ({'TICKET_DATE' : val, 'MONTH': val.getMonth(), 'YEAR': val.getFullYear(), 'DATE': val.getDate() }) )
     },
     closeTicketPopup() {
       this.classObject["show-ticket"] = false;
@@ -135,6 +219,8 @@ export default {
     chooseDropdownLabel(labelText, key) {
       switch (key) {
         case "month":
+          let searchKeyword = labelText.replace(/([0-9]*년)\s/, '').replace('월', '')
+          this.dateLabelList = this.labelTextList['month'].filter((val) => searchKeyword == val.MONTH + 1 ); 
           this.monthTitle = labelText;
           this.dateTitleShow = true;
           this.timeTitleShow = false;
@@ -201,11 +287,14 @@ export default {
     removePanel(k){
       console.log(`${k} remove`);
       this.dateTicketList.length == 1 ?  this.isAppendedTicket = false : this.dateTicketList.splice(k ,1);
-    }
+    },
+    removeDuplicatedVal(arr, key){
+      return arr.filter((arr1, i) => {
+        return arr.findIndex((arr2, j) => {
+          return arr1.key === arr2.key
+        }) === i;
+      });
+    },
   },
   components: {Dropdown, DropdownPanel}
   }
-
-
-
-  
