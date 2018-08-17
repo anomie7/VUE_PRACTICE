@@ -20,13 +20,13 @@
                     <form action="/orderPayments" method="post" id="date-ticket-form">
                         <input type="hidden" id="date-popup-item-id" name="item_id" value="" />
                         <div class="dateticket-list" style="display: none;" v-show="isAppendedTicket">
-                                <dropdown-panel :date-ticket-text="dateTicket" v-for="(dateTicket, index) in dateTicketList" :key="index" @plus="sellingPricePlus" @minus="sellingPriceMinus" @remove="removePanel"></dropdown-panel>
+                                <dropdown-panel :date-ticket-text="dateTicket" v-for="(dateTicket, index) in choosedDateTicketList" :key="index" @plus="sellingPricePlus" @minus="sellingPriceMinus" @remove="removePanel"></dropdown-panel>
                         </div>
                         <div id="selector-container">
                             <dropdown key="month" :title-message="monthTitle" :drop-down-show="monthDropdownShow" :title-show="monthTitleShow" :label-text-list="monthLabelList" @choose="chooseDropdownLabel" @disabled="dropDowndisabled"></dropdown>
                             <dropdown key="date" :title-message="dateTitle" :drop-down-show="dateDropdownShow" :title-show="dateTitleShow" :label-text-list="dateLabelList" @choose="chooseDropdownLabel" @disabled="dropDowndisabled"></dropdown>
                             <dropdown key="time" :title-message="timeTitle" :drop-down-show="timeDropdownShow" :title-show="timeTitleShow" :label-text-list="timeLabelList" @choose="chooseDropdownLabel" @disabled="dropDowndisabled"></dropdown>
-                            <dropdown key="option" :title-message="optionTitle" :drop-down-show="optionDropdownShow" :title-show="optionTitleShow" :label-text-list="optionLabelList" @choose="chooseDropdownLabel" @disabled="dropDowndisabled"></dropdown>
+                            <option-dropdown key="option" :title-message="optionTitle" :drop-down-show="optionDropdownShow" :title-show="optionTitleShow" :label-text-list="optionLabelList" @optionChoose="showDropdownPanel" @disabled="dropDowndisabled"></option-dropdown>
                         </div>
                     </form>
                 </div>

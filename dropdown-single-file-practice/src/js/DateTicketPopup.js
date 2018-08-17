@@ -1,4 +1,5 @@
 import Dropdown from "../components/Dropdown";
+import OptionDropdown from "../components/OptionDropdown"
 import DropdownPanel from "../components/DropdownPanel";
 
 var model = {
@@ -183,7 +184,8 @@ var model = {
       SOLD_CNT: 1
     }
   ],
-  sellingPrice: 0
+  sellingPrice: 0,
+  choosedDateTicketList: []
 };
 
 export default {
@@ -238,7 +240,8 @@ export default {
     },
     optionLabelList: {
       get: function() {return this.labelTextList["option"].map(
-        val => `${val.TICKET_NAME}|${val.SELLING_PRICE}원`
+        val => ( {labelText: `${val.TICKET_NAME}|${val.SELLING_PRICE}원`,
+                  TICKET_ID: val.TICKET_ID})
       );},
       set: function(newValue){
         let tmp = newValue.map(val => ({
@@ -256,10 +259,12 @@ export default {
       return result;
     },
     totalPrice() {
-      let tmp = this.dateTicketList.map(
-        obj => obj.SELLING_PRICE * obj.SOLD_CNT
-      );
-      return tmp.reduce((prev, curr) => prev + curr);
+      if(this.choosedDateTicketList.length > 0){
+        let tmp = this.choosedDateTicketList.map(
+          obj => obj.SELLING_PRICE * obj.SOLD_CNT
+        );
+        return tmp.reduce((prev, curr) => prev + curr);
+      }
     }
   },
   methods: {
@@ -336,13 +341,16 @@ export default {
           this.optionTitleShow = true;
           this.optionTitle = "옵션을 선택하세요.";
           break;
-        case "option":
-          this.optionTitle = labelText;
-          this.isAppendedTicket = true;
-          break;
         default:
           break;
       }
+    },
+    showDropdownPanel(labelText, ticketId){
+      let tmp = this.dateTicketList.filter(val => val.TICKET_ID === ticketId);
+      this.choosedDateTicketList = this.choosedDateTicketList.concat(tmp);
+      console.log(`${labelText} ${ticketId}`);
+      this.optionTitle = labelText;
+      this.isAppendedTicket = true;
     },
     dropDowndisabled(key) {
       switch (key) {
@@ -370,20 +378,21 @@ export default {
     },
     sellingPricePlus(k, c) {
       console.log(`${k} ${c}  plus`);
-      this.dateTicketList[k].SOLD_CNT = c;
-      this.sellingPrice += this.dateTicketList[k].SELLING_PRICE;
+      this.choosedDateTicketList[k].SOLD_CNT = c;
+      this.sellingPrice += this.choosedDateTicketList[k].SELLING_PRICE;
     },
     sellingPriceMinus(k, c) {
       console.log(`${k} ${c}  minus`);
-      this.dateTicketList[k].SOLD_CNT = c;
+      this.choosedDateTicketList[k].SOLD_CNT = c;
       if (this.sellingPrice == 0) return;
-      this.sellingPrice -= this.dateTicketList[k].SELLING_PRICE;
+      this.sellingPrice -= this.choosedDateTicketList[k].SELLING_PRICE;
     },
     removePanel(k) {
       console.log(`${k} remove`);
-      this.dateTicketList.length == 1
-        ? (this.isAppendedTicket = false)
-        : this.dateTicketList.splice(k, 1);
+      this.choosedDateTicketList.splice(k, 1);
+      if(this.choosedDateTicketList.length <= 0){
+        this.isAppendedTicket = false;
+      }
     },
     removeDuplicatedVal(arr, key) {
       return arr.filter((arr1, i) => {
@@ -395,5 +404,5 @@ export default {
       });
     }
   },
-  components: { Dropdown, DropdownPanel }
+  components: { Dropdown, DropdownPanel, OptionDropdown }
 };
